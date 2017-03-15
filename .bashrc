@@ -1,7 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -57,6 +53,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -72,12 +69,10 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
+# ls, grep 指令預設上色
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -93,11 +88,7 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
+# 如果要有自訂的alias, 可以放到~/.bash_aliases, 方便管理
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -113,22 +104,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# chris custom settings
-export PATH="$PATH:$HOME/.npm_packages/bin"
-export PATH="$PATH:$HOME/.bin"
-alias lint='eslint -c eslint-config-airbnb'
-alias memo="sudo crontab -u kim -e"
-
-# f/b : foreground / background
-COLOR_GRAY="$(tput bold)$(tput setaf 0)"
-COLOR_BLACK="$(tput setaf 0)"
-COLOR_RED="$(tput setaf 1)"
-COLOR_GREEN="$(tput setaf 2)"
-COLOR_YELLOW="$(tput setaf 3)"
-COLOR_BLUE="$(tput setaf 4)"
-COLOR_MAGENTA="$(tput setaf 5)"
-COLOR_CYAN="$(tput setaf 6)"
-COLOR_WHITE="$(tput setaf 7)"
-COLOR_RESET="$(tput sgr0)"
-PS1='${debian_chroot:+($debian_chroot)}${COLOR_GRAY}\u@dev${COLOR_RESET} ${COLOR_WHITE}\w ${COLOR_YELLOW}\$ ${COLOR_RESET}'
-
+[ -d ~/.npm_packages ] && [ -d ~/.npm_packages/bin ] && export PATH="$PATH:$HOME/.npm_packages/bin"
+[ -d ~/.bin ] && export PATH="$PATH:$HOME/.bin"
