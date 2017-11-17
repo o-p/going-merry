@@ -83,6 +83,8 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias psr2='phpcs --standard=PSR2'
+alias gl="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
