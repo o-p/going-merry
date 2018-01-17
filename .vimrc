@@ -1,27 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
-"       Amir Salihefendic
-"       http://amix.dk - amix@amix.dk
-"
-" Version: 
-"       6.0 - 01/04/17 14:24:34 
-"
-" Blog_post: 
-"       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
-"
-" Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
-"
-"       Install the awesome version from:
-"
-"           https://github.com/amix/vimrc
-"
-" Syntax_highlighted:
-"       http://amix.dk/vim/vimrc.html
-"
-" Raw_version: 
-"       http://amix.dk/vim/vimrc.txt
-"
 " Sections:
 "    -> General
 "    -> VIM user interface
@@ -53,18 +30,16 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
+" 前綴鍵 <leader> 設定
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
+" 快速存檔g
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
-
+" command W w !sudo tee % > /dev/null
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -73,7 +48,7 @@ command W w !sudo tee % > /dev/null
 set so=7
 
 " Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
+let $LANG='en'
 set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -89,42 +64,35 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
-"Always show current position
+" 顯示游標位置
 set ruler
-
+" 顯示行號
+set number
+" 顯示指令
+set showcmd
 " Height of the command bar
 set cmdheight=2
-
 " A buffer becomes hidden when it is abandoned
 set hid
-
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
 " Ignore case when searching
 set ignorecase
-
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
-
 " Highlight search results
 set hlsearch
-
 " Makes search act like search in modern browsers
 set incsearch 
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw 
-
 " For regular expressions turn magic on
 set magic
-
-" Show matching brackets when text indicator is over them
+" 顯示對應括號
 set showmatch 
 " How many tenths of a second to blink when matching brackets
 set mat=2
-
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
@@ -153,6 +121,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
+    " 這邊可以用 :color <Tab> 檢視 colorscheme
     colorscheme desert
 catch
 endtry
@@ -276,9 +245,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Always show the status line
 set laststatus=2
 
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
+" Format the status line 如果沒有 vim-airline 則啟用這個
+if (!exists("loaded_airline"))
+    set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -311,20 +281,31 @@ endfun
 if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
+" 調整插入模式
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-d> <DELETE>
 
+" Plugin binding
+nmap <C-n> :NERDTreeToggle<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+" 強迫學習系列
+" http://vimcasts.org/blog/2013/02/habit-breaking-habit-making/
+" 1. 停用方向鍵
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
+" 2. 停用 h, j, k, l - 這個太瘋狂先保留, 不然我的 vim 沒辦法動
+" 以 word 為單位移動: w, b, e, ge, W, B, E, gE
+" 從當前位置找 char: f, F, t, T
+" noremap h <NOP>
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
@@ -341,12 +322,21 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 個人設定
+" => Plugins (via vim-plug)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nu
+" :PlugInstall
+call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
 
+    Plug 'bling/vim-airline'               " statusline
+    Plug 'vim-airline/vim-airline-themes'  " statusline
+    Plug 'tpope/vim-fugitive'              " git 操作
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+call plug#end()
+
+set ambiwidth=double
+let g:airline_theme='soda'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -384,7 +374,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
