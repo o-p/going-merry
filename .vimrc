@@ -70,7 +70,7 @@ set number
 " 顯示指令
 set showcmd
 " Height of the command bar
-set cmdheight=2
+" set cmdheight=2
 " A buffer becomes hidden when it is abandoned
 set hid
 " Configure backspace so it acts as it should act
@@ -105,6 +105,7 @@ endif
 
 " Add a bit extra margin to the left
 " set foldcolumn=1
+set ambiwidth=double
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -164,9 +165,9 @@ set tabstop=4
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+set ai   " Auto indent
+set si   " Smart indent
+set wrap " Wrap lines
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -181,7 +182,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
-map <c-space> ?
+" map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -238,7 +239,7 @@ set laststatus=2
 
 " Format the status line 如果沒有 vim-airline 則啟用這個
 if (!exists("loaded_airline"))
-    set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+  set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -326,8 +327,15 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
 
 call plug#end()
 
-set ambiwidth=double
-let g:airline_theme='soda'
+" airline 相關調整, 字體可參考: https://github.com/powerline/fonts
+let g:airline_theme='bubblegum' " 預覽 https://github.com/vim-airline/vim-airline/wiki/screenshots
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+" Can I get better font rendering in Windows Gvim?
+set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
