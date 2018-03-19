@@ -101,5 +101,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -d ~/.npm_packages ] && [ -d ~/.npm_packages/bin ] && export PATH="$PATH:$HOME/.npm_packages/bin"
 [ -d ~/.bin ] && export PATH="$PATH:$HOME/.bin"
+# Composer global packages
+[ -d $HOME/.composer/vendor/bin ] && export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+# NVM settings
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Use MacVim if available
+[ $(which mvim) ] && alias vim='mvim'
+
