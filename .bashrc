@@ -112,3 +112,8 @@ export NVM_DIR="$HOME/.nvm"
 # Use MacVim if available
 [ $(which mvim) ] && alias vim='mvim'
 
+# Autocomplete Git Commands and Branch Names in Bash
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
