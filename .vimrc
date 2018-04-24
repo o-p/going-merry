@@ -29,16 +29,19 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" 前綴鍵 <leader> 設定
+" 前綴鍵 <leader> 設定, 自訂快捷鍵通常用這個開頭
 let mapleader = ","
 let g:mapleader = ","
 
-" 快速存檔g
+" 快速存檔
 nmap <leader>w :w!<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 " command W w !sudo tee % > /dev/null
+
+" 警示線
+set colorcolumn=81,121
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
