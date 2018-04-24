@@ -83,7 +83,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias psr2='phpcs --standard=PSR2'
 alias gl="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -101,19 +100,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -d ~/.bin ] && export PATH="$PATH:$HOME/.bin"
-# Composer global packages
-[ -d $HOME/.composer/vendor/bin ] && export PATH="$PATH:$HOME/.composer/vendor/bin"
-
-# NVM settings
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Use MacVim if available
-[ $(which mvim) ] && alias vim='mvim'
-
 # Autocomplete Git Commands and Branch Names in Bash
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+if [ -f .git-completion.bash ]; then
+  . .git-completion.bash
 fi
 

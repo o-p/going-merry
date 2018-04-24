@@ -11,7 +11,8 @@ git clone git@github.com:o-p/going-merry.git
 cd going-merry
 
 # 這邊看環境有可能是 [.bashrc|.profile]
-ln -s .bashrc ~/.profile 
+# 這樣比較方便針對每台機器調整 PATH
+echo "source $(pwd -P)/.bashrc" >> ${HOME}/.profile 
 
 # ssh 設定
 chmod 0700 ~/.ssh
