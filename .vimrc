@@ -29,7 +29,7 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" 前綴鍵 <leader> 設定, 自訂快捷鍵通常用這個開頭
+" 前綴鍵 <leader> 設定, 快速按 <leader>+keys 代替指令或按鍵
 let mapleader = ","
 let g:mapleader = ","
 
@@ -143,6 +143,10 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" 標記多餘空白
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,8 +179,7 @@ set wrap " Wrap lines
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
+" Visual mode 按下 # / * 找所有相同的文字
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
@@ -187,7 +190,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 map <space> /
 " map <c-space> ?
 
-" Disable highlight when <leader><cr> is pressed
+" 取消 highlight <leader><cr>
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
@@ -247,11 +250,17 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
+" -------------------
+" noremap: 不會遞迴的 mapping (noremap Y y + noremap y Y 不會發生無窮迴圈)
+" prefix:
+"   - n - Normal mode
+"   - i - Insert mode
+"   - v - Visual mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
+" 按數字 0 回到行首
 map 0 ^
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
+" 上下移動行 (區塊) - alt(cmd) + j/k
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -264,7 +273,7 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for some filetypes ;)
+" 存擋時自動刪除行尾空白
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -276,7 +285,8 @@ endfun
 if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
-" 調整插入模式
+
+" 插入模式用 ctrl hjkl 上下左右移動 / ctrl+d 刪除
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -294,7 +304,7 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" 2. 停用 h, j, k, l - 這個太瘋狂先保留, 不然我的 vim 沒辦法動
+" 2. 停用 h, j, k, l - 這個很瘋狂先保留
 " 以 word 為單位移動: w, b, e, ge, W, B, E, gE
 " 從當前位置找 char: f, F, t, T
 " noremap h <NOP>
@@ -325,8 +335,9 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
 
     Plug 'bling/vim-airline'               " statusline
     Plug 'vim-airline/vim-airline-themes'  " statusline
-    Plug 'tpope/vim-fugitive'              " git 操作
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    Plug 'tpope/vim-fugitive'              " git 操作
+    Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
