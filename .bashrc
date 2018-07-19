@@ -69,7 +69,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-# ls, grep 指令預設上色
+# 指令預設上色
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -79,11 +79,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+# ls
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+# GIT
 alias gl="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+# DOCKER
+alias docker-up="docker-compose up -d"
+alias docker-down="docker-compose down"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
