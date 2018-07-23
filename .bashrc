@@ -109,3 +109,14 @@ if [ -f .git-completion.bash ]; then
   . .git-completion.bash
 fi
 
+# Different settings base on OS types
+case $OSTYPE in
+linux-gnu)
+    # Linux
+    ;;
+darwin*)
+    # macOS
+    alias ls="ls -G"
+    ;;
+esac
+
