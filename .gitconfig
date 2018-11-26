@@ -1,0 +1,10 @@
+[user]
+	name = Chris Chu
+	email = chrischu@kkbox.com
+[core]
+	autocrlf = false
+	filemode = false
+[color]
+	ui = true
+[credential]
+	helper = cache
