@@ -338,6 +338,7 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'tpope/vim-fugitive'              " git 操作
     Plug 'airblade/vim-gitgutter'
+    Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
