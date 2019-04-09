@@ -2,6 +2,7 @@
 	name = Chris Chu
 	email = name@mail.com
 [core]
+	editor = vim
 	autocrlf = false
 	filemode = false
 [color]
