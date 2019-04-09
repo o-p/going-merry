@@ -1,6 +1,6 @@
 [user]
 	name = Chris Chu
-	email = chrischu@kkbox.com
+	email = name@mail.com
 [core]
 	autocrlf = false
 	filemode = false
@@ -8,3 +8,11 @@
 	ui = true
 [credential]
 	helper = cache
+[alias]
+	last = log -1 HEAD
+	re = reset
+	co = checkout
+	ci = commit
+	br = branch
+	st = status
+	undo = reset HEAD --
