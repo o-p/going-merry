@@ -342,6 +342,7 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
     Plug 'tpope/vim-fugitive'              " git 操作
     Plug 'airblade/vim-gitgutter'
     Plug 'leafgarland/typescript-vim'
+    Plug 'kien/ctrlp.vim'
 
 call plug#end()
 
