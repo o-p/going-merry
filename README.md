@@ -12,7 +12,7 @@ cd going-merry
 
 # 這邊看環境有可能是 [.bashrc|.profile]
 # 這樣比較方便針對每台機器調整 PATH
-echo "source $(pwd -P)/.bashrc" >> ${HOME}/.profile 
+echo "source $(pwd -P)/.bashrc" >> ${HOME}/.profile
 
 # ssh 設定
 chmod 0700 ~/.ssh
@@ -42,3 +42,15 @@ ln -s .vimrc ~/.vimrc
 - split: `v` & `b`
 - 在panes間切換: `h` `j` `k` `l`
 
+## 自行安裝
+
+只紀錄 macOS 的安裝指令, 工作機上自行安裝的機會有限
+
+```bash
+# ccat - 帶 syntax highlight 的 cat
+$ brew install ccat
+# httpie - 易用版 curl
+$ brew install httpie
+# tdlr - 社群精簡版指令用法
+$ npm i -g tdlr
+```
