@@ -343,6 +343,7 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
     Plug 'airblade/vim-gitgutter'
     Plug 'leafgarland/typescript-vim'
     Plug 'kien/ctrlp.vim'
+    Plug 'tpope/vim-projectionist'         " Go to test file
 
 call plug#end()
 
