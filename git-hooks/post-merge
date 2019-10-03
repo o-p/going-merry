@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "merged"
+
+# composer install --no-scripts
+# yarn install
+

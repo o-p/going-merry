@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git log -1 --format=format:"%H (%h)"
+
+# macOS: git log -1 --format=format:%h | pbcopy
+

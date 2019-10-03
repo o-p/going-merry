@@ -27,6 +27,7 @@ ln -s .tmux.conf ~/.tmux.conf
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -s .vimrc ~/.vimrc
 
+git config --global core.hooksPath '~/path/to/going-merry/git-hooks'
 ```
 
 ## vim

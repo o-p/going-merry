@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Before push
+
+# Check all changes to default branch
+# git log --graph --decorate testing..HEAD
+
