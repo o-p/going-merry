@@ -78,9 +78,34 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+__prompt_command() {
+    local EXIT="$?"
+    PS1=""
+
+    local RCol='\[\e[0m\]'
+
+    local BBla='\[\e[1;30m\]'
+    local BRed='\[\e[1;31m\]'
+    local Red='\[\e[0;31m\]'
+    local BGre='\[\e[1;32m\]'
+    local Yel='\[\e[0;33m\]'
+    local BBlu='\[\e[1;34m\]'
+    local Pur='\[\e[0;35m\]'
+
+    if [ $EXIT != 0 ]; then
+        PS1+="${Red}\u${Rcol}"
+    else
+        PS1+="${BBla}\u${Rcol}"
+    fi
+
+    PS1+="${BBla}@\h ${Yel}\w${Pur}$(parse_git_branch) ${RCol}\n${BRed}\$${RCol} "
+}
+
 if [ "$color_prompt" = yes ]; then
     export PS1='\[\e[01;30m\]\u@\h \[\e[0;33m\]\w\[\e[35m\]$(parse_git_branch) \[\e[0m\]\n\[\e[1;31m\]\$\[\e[0m\] '
     export PS2='\[\e[0;31m\]>\[\e[0m\] '
+
+    PROMPT_COMMAND=__prompt_command
 else
     export PS1='\u@\h \w$(parse_git_branch) \n\$ '
     export PS2='> '
