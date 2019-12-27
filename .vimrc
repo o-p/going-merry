@@ -68,8 +68,9 @@ endif
 
 " 顯示游標位置
 set ruler
-" 顯示行號
+" 顯示相對行號
 set number
+set relativenumber
 " 顯示指令
 set showcmd
 " Height of the command bar
@@ -236,6 +237,9 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" 按下 F1 切換行號顯示方式
+map <F1> :set rnu!<CR>
 
 """"""""""""""""""""""""""""""
 " => Status line
