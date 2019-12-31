@@ -346,10 +346,13 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
     Plug 'tpope/vim-fugitive'              " git 操作
     Plug 'airblade/vim-gitgutter'
     Plug 'leafgarland/typescript-vim'
-    Plug 'kien/ctrlp.vim'
+    Plug 'kien/ctrlp.vim'                  " ctrl + p
     Plug 'tpope/vim-projectionist'         " Go to test file
+    Plug 'majutsushi/tagbar'               " Show tags/outline (F8)
 
 call plug#end()
+
+nmap <F8> :TagbarToggle<CR>
 
 " airline 相關調整, 字體可參考: https://github.com/powerline/fonts
 let g:airline_theme='bubblegum' " 預覽 https://github.com/vim-airline/vim-airline/wiki/screenshots
