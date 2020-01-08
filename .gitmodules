@@ -1,0 +1,6 @@
+[submodule "submodules/vim-monokai"]
+	path = submodules/vim-monokai
+	url = https://github.com/sickill/vim-monokai.git
+[submodule "submodules/vim-plug"]
+	path = submodules/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
