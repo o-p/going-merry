@@ -4,3 +4,6 @@
 [submodule "submodules/vim-plug"]
 	path = submodules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+[submodule "submodules/vim-wombat256mod"]
+	path = submodules/vim-wombat256mod
+	url = https://github.com/michalbachowski/vim-wombat256mod.git
