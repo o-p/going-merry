@@ -7,3 +7,6 @@
 [submodule "submodules/vim-wombat256mod"]
 	path = submodules/vim-wombat256mod
 	url = https://github.com/michalbachowski/vim-wombat256mod.git
+[submodule "submodules/ctags"]
+	path = submodules/ctags
+	url = https://github.com/universal-ctags/ctags.git
