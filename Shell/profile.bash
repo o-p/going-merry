@@ -211,8 +211,8 @@ esac
 #  Y888   | 888  888         888   | Y888    , 888 888  888P Y888    , 888
 #   "88__/  888  "88_/       888   |  "88___/  888 888-_88"   "88___/  888
 #                                                  888
-if [ -f $DIR/.git-completion.bash ]; then
-    . $DIR/.git-completion.bash
+if [ -f $DIR/git-completion.bash ]; then
+    . $DIR/git-completion.bash
 fi
 
 
