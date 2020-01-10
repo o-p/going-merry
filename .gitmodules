@@ -1,0 +1,12 @@
+[submodule "submodules/vim-monokai"]
+	path = submodules/vim-monokai
+	url = https://github.com/sickill/vim-monokai.git
+[submodule "submodules/vim-plug"]
+	path = submodules/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
+[submodule "submodules/vim-wombat256mod"]
+	path = submodules/vim-wombat256mod
+	url = https://github.com/michalbachowski/vim-wombat256mod.git
+[submodule "submodules/ctags"]
+	path = submodules/ctags
+	url = https://github.com/universal-ctags/ctags.git

@@ -1,0 +1,1 @@
+../../submodules/vim-wombat256mod/colors/wombat256mod.vim
