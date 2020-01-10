@@ -245,9 +245,6 @@ endif
 " 取消 highlight <Leader><CR>
 map <silent> <Leader><CR> :noh<CR>
 
-" 維持使用 ctrl + d 刪除後方字元
-inoremap <C-d> <DELETE>
-
 " Plugin binding
 nmap <silent><C-n> :NERDTreeToggle<CR>
 
@@ -281,6 +278,7 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
     " Git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+    Plug 'sodapopcan/vim-twiggy'
 
     " 檔案瀏覽
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -293,7 +291,8 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
     " 編輯工具
     Plug 'editorconfig/editorconfig-vim'
     Plug 'anyakichi/vim-surround'          " 增加 s selector, cs'<p> 將單引號改為 <p>
-    Plug 'ntpeters/vim-better-whitespace' " 顯示 trailing whitespace, 包含刪除 function StripWhitespace
+    Plug 'ntpeters/vim-better-whitespace'  " 顯示 trailing whitespace, 包含刪除 function StripWhitespace
+    Plug 'tpope/vim-rsi'                   " 編輯模式使用 Ctrl + n p a e ... 移動指標
 
     " 各種語言
     Plug 'leafgarland/typescript-vim'
