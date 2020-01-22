@@ -166,41 +166,6 @@ set ai   " Auto indent
 set si   " Smart indent
 set wrap " Wrap lines
 
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode 按下 # / * 找所有相同的文字
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-" Close the current buffer
-map <Leader>bd :Bclose<CR>:tabclose<CR>gT
-
-" Close all the buffers
-map <Leader>ba :bufdo bd<CR>
-
-map <Leader>l :bnext<CR>
-map <Leader>h :bprevious<CR>
-
-" Useful mappings for managing tabs
-map <Leader>tn :tabnew<CR>
-map <Leader>to :tabonly<CR>
-map <Leader>tq :tabclose<CR>
-map <Leader>tm :tabmove
-map <Leader>tt :tabnext<CR>
-
-" Let 'tl' toggle between this and the last accessed tab
-let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-autocmd TabLeave * let g:lasttab = tabpagenr()
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <Leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
-
-" Switch CWD to the directory of the open buffer
-map <Leader>cd :cd %:p:h<CR>:pwd<CR>
-
 " Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
@@ -228,6 +193,53 @@ endif
 " noremap: 不會遞迴的 mapping (noremap Y y + noremap y Y 不會發生無窮迴圈)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" 禁用方向鍵移動
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" 編輯模式移動 (有些仿 Emac / readline 移動方式是在 vim-rsi plugin 中)
+inoremap <C-n> <C-o>j
+inoremap <C-p> <C-o>k
+
+inoremap <C-u> <C-o>u
+inoremap <C-S-u> <C-o><S-u>
+
+" Visual mode 按下 # / * 找所有相同的文字
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+" Close the current buffer
+map <Leader>bd :Bclose<CR>:tabclose<CR>gT
+
+" Close all the buffers
+map <Leader>ba :bufdo bd<CR>
+
+map <Leader>l :tabnext<CR>
+map <Leader>h :tabprevious<CR>
+map <Leader><S-l> :bnext<CR>
+map <Leader><S-h> :bprevious<CR>
+
+" Useful mappings for managing tabs
+map <Leader>tn :tabnew<CR>
+" map <Leader>to :tabonly<CR>
+map <Leader>tq :tabclose<CR>
+" map <Leader>tm :tabmove
+map <Leader>tt :tabnext<CR>
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+autocmd TabLeave * let g:lasttab = tabpagenr()
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <Leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
+
+" Switch CWD to the directory of the open buffer
+map <Leader>cd :cd %:p:h<CR>:pwd<CR>
+
 " 上下移動行 (區塊)
 " M - 必須將 iTerm2 option key 設定為 ESC+ (Meta)
 nmap <M-j> mz:m+<CR>`z
@@ -246,13 +258,7 @@ endif
 map <silent> <Leader><CR> :noh<CR>
 
 " Plugin binding
-nmap <silent><C-n> :NERDTreeToggle<CR>
-
-" 禁用方向鍵移動
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+nmap <silent> <C-n> :NERDTreeToggle<CR>
 
 " ,q 快速開啟空白 buffer
 map <Leader>q :e ~/buffer<CR>
@@ -296,6 +302,7 @@ call plug#begin('~/.vim/plugged') " 避免使用預設的 ~/.vim/plugin
 
     " 各種語言
     Plug 'leafgarland/typescript-vim'
+    Plug 'posva/vim-vue'                            " Vue syntax highlight
     Plug 'rayburgemeestre/phpfolding.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisence engine for vim8 & neovim
                                                     " 需要自行安裝 language server plugin
