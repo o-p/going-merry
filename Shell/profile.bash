@@ -149,7 +149,7 @@ alias gl="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cr
 alias add="git add"
 alias commit="git commit"
 alias push="git push"
-alias pull="get pull"
+alias pull="git pull"
 
 ## grep
 alias grep='grep --color=auto'
