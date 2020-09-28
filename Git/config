@@ -17,3 +17,5 @@
 	br = branch
 	st = status
 	undo = reset HEAD --
+    graph = log --graph --pretty=short
+
