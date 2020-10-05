@@ -1,9 +1,9 @@
 # Submodules
 
 ```bash
-$ git submodule init
-$ git submodule update
-$ git submodule sync
+# For the first time installation
+$ git submodule update --init --recursive
+
 ```
 
 ## Build Universal CTags
