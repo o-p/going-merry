@@ -1,21 +1,22 @@
 [user]
-	name = Chris Chu
-	email = name@mail.com
+    name = Chris Chu
+    email = name@mail.com
 [core]
-	editor = vim
-	autocrlf = false
-	filemode = false
+    editor = vim
+    autocrlf = false
+    filemode = false
 [color]
-	ui = true
+    ui = true
 [credential]
-	helper = cache
+    helper = cache
 [alias]
-	last = log -1 HEAD
-	re = reset
-	co = checkout
-	ci = commit
-	br = branch
-	st = status
-	undo = reset HEAD --
+    last = log -1 HEAD
+    re = reset
+    co = checkout
+    ci = commit
+    br = branch
+    st = status
+    undo = reset --soft HEAD --
     graph = log --graph --pretty=short
-
+    vdiff = difftool --tool=vimdiff
+    wdiff = diff --word-diff --color-words
