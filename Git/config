@@ -18,5 +18,6 @@
     st = status
     undo = reset --soft HEAD --
     graph = log --graph --pretty=short
-    vdiff = difftool --tool=vimdiff
-    wdiff = diff --word-diff --color-words
+    df = diff
+    vdf = difftool --tool=vimdiff
+    wdf = diff --word-diff --color-words
