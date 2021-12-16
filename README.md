@@ -36,6 +36,6 @@ ln -s $(realpath ./tmux/tmux.conf) ~/.tmux.conf
 $ brew install ccat
 # httpie - 易用版 curl
 $ brew install httpie
-# tdlr - 社群精簡版指令用法
-$ npm i -g tdlr
+# tldr - 社群精簡版指令用法 (使用 pip3 安裝到 ~/.local/bin 避免 npm 會隨著 nvm 切版本跑掉)
+$ pip3 install tldr
 ```
